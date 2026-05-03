@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahmudul Hassan | Expert Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --accent: #00d2ff;
+            --bg: #030712;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; }
+        body { background: var(--bg); color: #fff; overflow-x: hidden; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+        /* Particle Background Canvas */
+        #particles-js {
+            position: fixed; width: 100%; height: 100%; z-index: -1;
+            background: radial-gradient(circle at center, #111827 0%, #030712 100%);
+        }
+
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 25px 8%; position: fixed; width: 100%; top: 0;
+            background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(15px);
+            z-index: 1000; border-bottom: 1px solid var(--border);
+        }
+
+        .logo { font-size: 24px; font-weight: 700; letter-spacing: 2px; color: var(--primary); }
+
+        nav a {
+            color: #94a3b8; margin-left: 30px; text-decoration: none;
+            font-size: 14px; font-weight: 500; transition: .4s;
+            text-transform: uppercase;
+        }
+        nav a:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+
+        .hero {
+            height: 100vh; display: flex; align-items: center; justify-content: space-between;
+            padding: 0 8%; position: relative;
+        }
+
+        .hero-text h2 { font-size: 55px; font-weight: 700; line-height: 1.1; }
+        .hero-text span { color: var(--primary); }
+        .typing-text { font-size: 24px; color: var(--accent); margin: 20px 0; font-family: 'Poppins'; }
+
+        /* Social Icons */
+        .social-links { display: flex; gap: 20px; margin: 30px 0; }
+        .social-links a {
+            width: 50px; height: 50px; border-radius: 12px;
+            background: var(--glass); border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 22px; transition: .4s;
+        }
+        .social-links a:hover {
+            transform: translateY(-8px) rotate(8deg);
+            background: var(--primary); border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .cta-btn {
+            padding: 15px 35px; background: linear-gradient(45deg, var(--primary), var(--accent));
+            border: none; color: #fff; border-radius: 50px; cursor: pointer;
+            font-weight: 700; text-decoration: none; transition: .4s;
+            display: inline-block; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
+        }
+        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4); }
+
+        .hero-img-container { position: relative; }
+        .hero-img-container::before {
+            content: ""; position: absolute; width: 110%; height: 110%;
+            border: 2px solid var(--primary); border-radius: 50%;
+            top: -5%; left: -5%; animation: spin 10s linear infinite;
+            border-style: dashed;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        .hero-img img {
+            width: 380px; height: 380px; border-radius: 50%;
+            object-fit: cover; border: 8px solid var(--glass);
+            position: relative; z-index: 2;
+        }
+
+        .section { padding: 120px 8%; }
+        .section-title { font-size: 40px; margin-bottom: 60px; text-align: center; font-weight: 700; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+        .glass-card {
+            background: var(--glass); border: 1px solid var(--border);
+            padding: 40px; border-radius: 24px; backdrop-filter: blur(10px);
+            transition: .4s; position: relative; overflow: hidden;
+        }
+        .glass-card::before {
+            content: ""; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: .6s;
+        }
+        .glass-card:hover::before { left: 100%; }
+        .glass-card:hover { transform: translateY(-15px); border-color: var(--primary); background: rgba(255,255,255,0.05); }
+
+        .skill-tag {
+            display: inline-block; padding: 10px 20px; background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 12px;
+            margin: 5px; font-weight: 600; font-size: 14px; transition: .3s;
+        }
+        .skill-tag:hover { background: var(--primary); color: #fff; transform: translateY(-3px); }
+
+        footer { text-align: center; padding: 60px; border-top: 1px solid var(--border); color: #64748b; }
+
+        @media (max-width: 968px) {
+            .hero { flex-direction: column-reverse; text-align: center; padding-top: 150px; height: auto; }
+            .hero-text h2 { font-size: 40px; }
+            .hero-img img { width: 280px; height: 280px; margin-bottom: 40px; }
+            .social-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="particles-js"></div>
+
+<header>
+    <div class="logo">M.HASSAN</div>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Expertise</a>
+        <a href="#projects">Work</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-text">
+        <h2>Solving Problems<br>With <span>Premium Code</span></h2>
+        <div class="typing-text">I am a <span id="typed"></span></div>
+        <p>Expert in HTML5, CSS3, JavaScript, and PHP. Specializing in high-end web architecture and complex bug resolution.</p>
+        
+        <div class="social-links">
+            <a href="https://fiverr.com/mahmudul_codes" target="_blank"><i class="fa-solid fa-bolt"></i></a>
+            <a href="https://linkedin.com/in/mhmasum" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://instagram.com/your_user" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://github.com/your_user" target="_blank"><i class="fa-brands fa-github"></i></a>
+        </div>
+
+        <a href="CV.pdf" class="cta-btn">Download Portfolio CV</a>
+    </div>
+
+    <div class="hero-img-container">
+        <div class="hero-img">
+            <img src="pic.jpg" alt="Mahmudul Hassan">
+        </div>
+    </div>
+</section>
+
+<section id="skills" class="section">
+    <h2 class="section-title">Technical Expertise</h2>
+    <div style="text-align: center;">
+        <div class="skill-tag">Full Stack Development</div>
+        <div class="skill-tag">Bug Fixing Expert</div>
+        <div class="skill-tag">UI/UX Design</div>
+        <div class="skill-tag">PHP & MySQL</div>
+        <div class="skill-tag">JavaScript ES6</div>
+        <div class="skill-tag">Responsive Architecture</div>
+        <div class="skill-tag">SEO Optimization</div>
+    </div>
+</section>
+
+<section id="projects" class="section">
+    <h2 class="section-title">Selected Experience</h2>
+    <div class="grid">
+        <div class="glass-card">
+            <i class="fa-solid fa-code" style="font-size: 30px; color: var(--primary); margin-bottom: 20px;"></i>
+            <h3>IT Service Landing Page</h3>
+            <p style="color: #94a3b8; margin-top: 15px;">Developed a high-performance landing page with interactive UI/UX components and optimized assets.</p>
+        </div>
+        <div class="glass-card">
+            <i class="fa-solid fa-bug-slash" style="font-size: 30px; color: var(--primary); margin-bottom: 20px;"></i>
+            <h3>Backend Optimization</h3>
+            <p style="color: #94a3b8; margin-top: 15px;">Identified and resolved 50+ critical bugs in PHP-based web applications, ensuring 99% uptime.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 Mahmudul Hassan Masum. Crafted for the future of Web.</p>
+</footer>
+
+<!-- Particles and Typing JS -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+    // Typing Animation
+    var typed = new Typed('#typed', {
+        strings: ['Full Stack Developer', 'Bug Fixing Expert', 'UI/UX Enthusiast', 'CSE Student'],
+        typeSpeed: 50,
+        backSpeed: 30,
+        loop: true
+    });
+
+    // Particles JS Configuration
+    particlesJS("particles-js", {
+        "particles": {
+            "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+            "color": { "value": "#3b82f6" },
+            "shape": { "type": "circle" },
+            "opacity": { "value": 0.5, "random": false },
+            "size": { "value": 3, "random": true },
+            "line_linked": { "enable": true, "distance": 150, "color": "#3b82f6", "opacity": 0.4, "width": 1 },
+            "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+            "modes": { "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 } }
+        },
+        "retina_detect": true
+    });
+</script>
+</body>
+</html>
